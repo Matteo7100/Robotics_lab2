@@ -1,49 +1,62 @@
-# Robotics Lab Assignment 2 - Implementation of a Human Augmentation Device
+# Robotics Lab Assignment 2 — Human Augmentation Device (1-DoF Linear Actuator + IMU Gesture)
 
-Implementation of a human augmentation device, that can be attached to a human body to assist with a 1 dof linear motion.  
+Implementation of a human augmentation device to assist a **1-DoF linear motion** using an **IMU gesture** and a **stepper-driven slider**.  
+**Note:** final version has **NO Y motor control** (pitch is only streamed/visualized).
 
-**Course**: Robotics, P2 2025-2026  
+**Course**: Robotics, P2 2025–2026  
 **Instructor**: joao.silva.sequeira@tecnico.ulisboa.pt  
-**Due**: 16-1-2026, 23:59:59
+**Due**: 16-01-2026, 23:59:59
 
-## First Steps - Setup
+## Repository contents
+- `arduino/` (or `.ino`) — **Main firmware**: IMU + complementary filter + X-gesture + stepper homing/center + button push + CSV stream  
+- `processing/` (or `.pde`) — **Digital Twin UI**: serial CSV parsing + 3D board + live plots + handshake
+
+---
+
+## First Steps — Setup
 
 ### Prerequisites
-- Ubuntu (or Linux-based system)
 - Arduino IDE
-- Python 3.x
 - Processing IDE (for the digital twin)
 
-### Installation and Setup
+### Run (Arduino)
+1. Open `codeLab2/codeLab2.ino` and **upload** to Arduino Uno.
+2. Open **Serial Monitor @ 115200**.
+3. At boot:
+   - keep the IMU **still for ~2s** (gyro bias calibration)
+   - the slider will **home automatically** (LEFT → RIGHT → move to center)
 
-1. **Clone the repository:**
-```bash
-   git clone <repository-url>
-   cd <repository-name>
-```  
-2. **Upload**: Open LAB2_arduino.ino and upload it to Arduino Uno.  
-3. **Homing**: Upon startup, the system will automatically perform a Homing Sequence:  
-      - Move Left until SW_LEFT is hit.  
-      - Move Right until SW_RIGHT is hit to measure total travel steps.  
-      - Move back to the calculated center.
-4. **Gesture Execution**: Trigger a "button push" action based on gesture detection.
-
-### Gesture execution
-The "Push" command is activated by a distinct rotational gesture of the forearm. To trigger the sequence, the user rotates their wrist along the Roll axis until it exceeds a 90-degree threshold, holding the position briefly (120ms) to confirm the intent.
+### Gesture execution (X / Roll)
+The “Push” action triggers when the **roll angle** exceeds the threshold and is held briefly:
+- `|roll| > 90°` for at least `120 ms`
+- cooldown after trigger: `700 ms`
 
 ### Serial Commands
-You can control the device manually by typing these characters into the Serial Monitor:
+Type in Serial Monitor (case-sensitive):
+- `H` : Home + center
+- `P` : Manual button push
+- `C` : Calibrate gyro bias (keep IMU still)
+- `S` : Start CSV streaming (prints header)
+- `s` : Stop CSV streaming
+- `?` : Help
 
-* `H` : **Re-Home** the device (Run calibration again).
-* `P` : Trigger the **Button Push** sequence manually.
-* `C` : **Calibrate** the Gyroscope bias (keep sensor still).
-* `S` : **Start** CSV data streaming.
-* `s` : **Stop** CSV data streaming.
-* `?` : Print help menu
+---
 
-## Digital Twin Visualization
-
+## Digital Twin Visualization (Processing)
+1. Open `processing/digital_twin.pde`.
+2. Set the correct serial port index:
+   ```java
+   final int PORT_INDEX = 2;
 
 
+(Processing prints `Serial.list()` at startup)
+3. Run the sketch.
 
+**Handshake:** Processing sends `S` every 500 ms until it receives the CSV header.
+**Controls:** mouse drag = rotate camera, `C` reconnect, `I/O/U` invert axes, `R` reset yaw.
 
+### CSV stream (12 fields)
+
+```text
+t_ms,ax,ay,az,gx,gy,gz,angleX_deg,angleY_deg,angleY_smooth,gestureX,posSteps
+```
