@@ -12,6 +12,7 @@ Implementation of a human augmentation device, that can be attached to a human b
 - Ubuntu (or Linux-based system)
 - Arduino IDE
 - Python 3.x
+- Processing IDE (for the digital twin)
 
 ### Installation and Setup
 
