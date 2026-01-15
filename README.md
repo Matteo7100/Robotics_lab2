@@ -41,7 +41,7 @@ You can control the device manually by typing these characters into the Serial M
 * `s` : **Stop** CSV data streaming.
 * `?` : Print help menu
 
-### Digital Twin Visualization
+## Digital Twin Visualization
 
 
 
