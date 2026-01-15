@@ -1,4 +1,5 @@
 # Robotics Lab Assignment 2 - Implementation of a Human Augmentation Device
+
 Implementation of a human augmentation device, that can be attached to a human body to assist with a 1 dof linear motion.
 
 **Course:**: Robotics, P2 2025
