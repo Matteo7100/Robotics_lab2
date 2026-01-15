@@ -12,6 +12,7 @@ Implementation of a human augmentation device, that can be attached to a human b
 - Ubuntu (or Linux-based system)
 - Arduino IDE
 - Python 3.x
+- Processing IDE (for the digital twin)
 
 ### Installation and Setup
 
@@ -40,7 +41,7 @@ You can control the device manually by typing these characters into the Serial M
 * `s` : **Stop** CSV data streaming.
 * `?` : Print help menu
 
-### Digital Twin Visualization
+## Digital Twin Visualization
 
 
 
