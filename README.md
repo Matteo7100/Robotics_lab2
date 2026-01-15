@@ -8,8 +8,9 @@ Implementation of a human augmentation device to assist a **1-DoF linear motion*
 **Due**: 16-01-2026, 23:59:59
 
 ## Repository contents
-- `arduino/` (or `.ino`) — **Main firmware**: IMU + complementary filter + X-gesture + stepper homing/center + button push + CSV stream  
-- `processing/` (or `.pde`) — **Digital Twin UI**: serial CSV parsing + 3D board + live plots + handshake
+- `code_lab2/code_lab2.ino` — **Main firmware**: IMU + complementary filter + X-gesture + stepper homing/center + button push + CSV stream  
+- `processing/digital_twin.pde` — **Digital Twin UI**: serial CSV parsing + 3D board + live plots + handshake
+- `c14e7a91d61f4bb697541895330848b8.mp4` — **Video**
 
 ---
 
@@ -20,7 +21,7 @@ Implementation of a human augmentation device to assist a **1-DoF linear motion*
 - Processing IDE (for the digital twin)
 
 ### Run (Arduino)
-1. Open `codeLab2/codeLab2.ino` and **upload** to Arduino Uno.
+1. Open `code_lab2/code_lab2.ino` and **upload** to Arduino Uno.
 2. Open **Serial Monitor @ 115200**.
 3. At boot:
    - keep the IMU **still for ~2s** (gyro bias calibration)
