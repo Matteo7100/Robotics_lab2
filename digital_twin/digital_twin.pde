@@ -275,7 +275,7 @@ void drawHUD(boolean aliveAny, boolean aliveCsv) {
 
   fill(255);
   textSize(14);
-  text("IMU Digital Twin (Serial CSV) — No motor Y control", 24, 36);
+  text("IMU Digital Twin (Serial CSV)", 24, 36);
 
   textSize(12);
   text("RX ANY: " + (aliveAny ? "OK" : "NO") +

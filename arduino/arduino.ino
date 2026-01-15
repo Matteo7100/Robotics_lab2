@@ -1,6 +1,5 @@
 /*
   Robotics Lab 2 — Human augmentation device (1-DoF linear actuator + IMU gesture)
-  NO Y motor control (pitch is only visualized / streamed)
 */
 
 #include <Wire.h>
@@ -22,7 +21,7 @@ static const uint16_t STEP_LOW_US  = 1000;
 
 static const uint32_t BAUDRATE         = 115200;
 static const bool     STREAM_DEFAULT_ON = true;
-static const uint16_t STREAM_PERIOD_MS  = 20;   // 50 Hz
+static const uint16_t STREAM_PERIOD_MS  = 20;  
 
 static const float COMP_ALPHA = 0.98f;
 
@@ -31,7 +30,6 @@ static const float    ANGLE_X_DEADBAND_DEG  = 90.0f;
 static const uint16_t ANGLE_X_HOLD_MS       = 120;
 static const uint32_t GESTURE_REFRACTORY_MS = 700;
 
-// Y smoothing ONLY for visualization (NOT motor control)
 static const float Y_ANGLE_LPF_ALPHA = 0.90f;
 
 static const int8_t   BUTTON_DIR     = -1;
